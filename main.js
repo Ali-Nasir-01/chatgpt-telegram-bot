@@ -26,8 +26,17 @@ const generateResponse = async (msg) => {
 
 // Handle incoming Telegram messages
 bot.on("message", async (msg) => {
+  if (msg.chat.type === "private") {
+    const chatId = msg.chat.id;
+    const text = msg.text;
+    const response = await generateResponse(text);
+    bot.sendMessage(chatId, response);
+  }
+});
+
+bot.onText(/@persian_chatpgtbot(.+)/, async (msg, match) => {
   const chatId = msg.chat.id;
-  const text = msg.text;
+  const text = match[1];
   const response = await generateResponse(text);
   bot.sendMessage(chatId, response);
 });
