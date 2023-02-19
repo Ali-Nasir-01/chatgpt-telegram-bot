@@ -24,6 +24,10 @@ const generateResponse = async (msg) => {
   return response.text;
 };
 
+const removeUsername = (msg) => {
+  return msg.replace("@persian_chatpgtbot ", "");
+};
+
 // Handle incoming Telegram messages
 bot.on("message", async (msg) => {
   if (msg.chat.type === "private") {
@@ -34,9 +38,9 @@ bot.on("message", async (msg) => {
   }
 });
 
-bot.onText(/@persian_chatpgtbot(.+)/, async (msg, match) => {
+bot.onText(/@persian_chatpgtbot/, async (msg) => {
   const chatId = msg.chat.id;
-  const text = match[1];
+  const text = removeUsername(msg.text);
   const response = await generateResponse(text);
   bot.sendMessage(chatId, response);
 });
