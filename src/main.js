@@ -1,11 +1,16 @@
 import TelegramBot from "node-telegram-bot-api";
 import { ChatGPTAPI } from "chatgpt";
 import dotenv from "dotenv";
+import { exit } from "process";
 dotenv.config();
 
 const token = process.env.TELEGRAM_TOKEN;
 const apiKey = process.env.CHATGPT_TOKEN;
 const botUsername = process.env.BOT_USERNAME;
+
+if (!token || !apiKey || !botUsername) {
+  throw "Your .env variables not found!";
+}
 
 // Initialize Telegram bot
 const bot = new TelegramBot(token, { polling: true });
