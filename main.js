@@ -19,8 +19,12 @@ const generateResponse = async (msg) => {
     return "";
   }
   const text = msg || "";
-  const response = await api.sendMessage(text);
-  return response.text;
+  try {
+    const response = await api.sendMessage(text);
+    return response.text;
+  } catch (err) {
+    return "There is no answer";
+  }
 };
 
 const removeUsername = (msg) => {
