@@ -5,6 +5,7 @@ dotenv.config();
 
 const token = process.env.TELEGRAM_TOKEN;
 const apiKey = process.env.CHATGPT_TOKEN;
+const botUsername = process.env.BOT_USERNAME;
 
 // Initialize Telegram bot
 const bot = new TelegramBot(token, { polling: true });
@@ -28,7 +29,7 @@ const generateResponse = async (msg) => {
 };
 
 const removeUsername = (msg) => {
-  return msg.replace("@persian_chatpgtbot ", "");
+  return msg.replace(`${botUsername} `, "");
 };
 
 // Handle incoming Telegram messages
@@ -41,7 +42,8 @@ bot.on("message", async (msg) => {
   }
 });
 
-bot.onText(/@persian_chatpgtbot/, async (msg) => {
+const regex = new RegExp(botUsername, "g");
+bot.onText(regex, async (msg) => {
   const chatId = msg.chat.id;
   const text = removeUsername(msg.text);
   const response = await generateResponse(text);
