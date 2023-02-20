@@ -17,6 +17,6 @@ To use it you have two options:
     BOT_USERNAME="@your_bot_username"
     CHATGPT_TOKEN="Your ChatGPT token"
     ```
-    and after that just run ```npm start``` in your command line.
+    and after that just run ```npm i``` and ```npm start``` in your command line.
 
 This project will become more complete soon
