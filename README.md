@@ -14,6 +14,7 @@ To use it you have two options:
 - Second, if you want to have your own bot easily you can clone this project and add a ```.env``` file with these states on it:
     ```
     TELEGRAM_TOKEN="Your telegram bot token"
+    BOT_USERNAME="@your_bot_username"
     CHATGPT_TOKEN="Your ChatGPT token"
     ```
     and after that just run ```npm start``` in your command line.
