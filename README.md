@@ -9,7 +9,7 @@ Also, this bot can join telegram groups and if mentioned answer your questions.
 
 To use it you have two options:
 
-- If you just want to use ChatGPT you can search for ```@persian_chatpgtbot``` in telegram and start to use it.
+- If you just want to use ChatGPT you can search for ```@TextChatGPTBot``` in telegram and start to use it.
 
 - Second, if you want to have your own bot easily you can clone this project and add a ```.env``` file with these states on it:
     ```
