@@ -1,5 +1,5 @@
 
-# Telegram ChatGPT Bot - Node.js
+# ChatGPT Telegram Bot - Node.js
 
 This is a Telegram bot for interacting with a large language model trained by OpenAI. It enables users to interact with the ChatGPT AI in natural language and receive responses in real time.
 
