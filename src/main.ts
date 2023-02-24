@@ -10,6 +10,7 @@ const botUsername = process.env.BOT_USERNAME;
 
 if (!token || !apiKey || !botUsername) {
   throw "Your .env variables not found!";
+  exit(1)
 }
 
 // Initialize Telegram bot
@@ -20,12 +21,10 @@ const api = new ChatGPTAPI({
   apiKey: apiKey,
 });
 
-const generateResponse = async (msg) => {
-  if (!msg) {
-    return "";
-  }
-  const text = msg || "";
+const generateResponse = async (msg: string) => {
+  if (!msg) return "";
   try {
+    const text = msg || "";
     const response = await api.sendMessage(text);
     return response.text;
   } catch (err) {
@@ -33,7 +32,7 @@ const generateResponse = async (msg) => {
   }
 };
 
-const removeUsername = (msg) => {
+const removeUsername = (msg: string) => {
   return msg.replace(`${botUsername} `, "");
 };
 
@@ -41,8 +40,7 @@ const removeUsername = (msg) => {
 bot.on("message", async (msg) => {
   if (msg.chat.type === "private") {
     const chatId = msg.chat.id;
-    const text = msg.text;
-    const response = await generateResponse(text);
+    const response = await generateResponse(msg.text!);
     bot.sendMessage(chatId, response);
   }
 });
@@ -50,7 +48,7 @@ bot.on("message", async (msg) => {
 const regex = new RegExp(botUsername, "g");
 bot.onText(regex, async (msg) => {
   const chatId = msg.chat.id;
-  const text = removeUsername(msg.text);
+  const text = removeUsername(msg.text!);
   const response = await generateResponse(text);
   bot.sendMessage(chatId, response);
 });
