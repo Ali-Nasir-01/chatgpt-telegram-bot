@@ -2,11 +2,12 @@
   "name": "chatgpt-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "nodemon",
     "build": "tsup src/**/*.ts --format esm",
-    "start": "node dist/main.js"
+    "start": "node dist/main.js",
+    "test:start":"esno src/main.ts"
   },
   "type": "module",
   "keywords": [],
