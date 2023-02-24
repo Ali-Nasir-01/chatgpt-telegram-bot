@@ -1,7 +1,6 @@
 import TelegramBot from "node-telegram-bot-api";
 import { ChatGPTAPI } from "chatgpt";
 import dotenv from "dotenv";
-import { exit } from "process";
 dotenv.config();
 
 const token = process.env.TELEGRAM_TOKEN;
