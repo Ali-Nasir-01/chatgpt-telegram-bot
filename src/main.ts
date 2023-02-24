@@ -10,7 +10,6 @@ const botUsername = process.env.BOT_USERNAME;
 
 if (!token || !apiKey || !botUsername) {
   throw "Your .env variables not found!";
-  exit(1)
 }
 
 // Initialize Telegram bot
