@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "exec": "esno src/main.ts"
+}

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+      "baseUrl": ".",
+      "module": "ESNext",
+      "target": "es2016",
+      "jsx": "preserve",
+      "lib": [
+          "DOM",
+          "ESNext"
+      ],
+      "strict": true,
+      "esModuleInterop": true,
+      "incremental": true,
+      "skipLibCheck": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "forceConsistentCasingInFileNames": true,
+  },
+  "include": [
+      "src/**/*.ts"
+  ],
+  "exclude": [
+      "dist",
+      "**/dist",
+      "node_modules",
+      "**/node_modules",
+      "coverage"
+  ]
+}
