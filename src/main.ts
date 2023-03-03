@@ -18,6 +18,7 @@ const bot = new TelegramBot(token, { polling: true });
 // Initialize OpenAI client
 const api = new ChatGPTUnofficialProxyAPI({
   accessToken: accessToken,
+  apiReverseProxyUrl:"https://chat.duti.tech/api/conversation"
 });
 
 const generateResponse = async (msg: string) => {
