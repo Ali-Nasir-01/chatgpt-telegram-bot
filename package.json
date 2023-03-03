@@ -2,7 +2,7 @@
   "name": "chatgpt-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "dist/main.js",
   "scripts": {
     "dev": "nodemon",
     "build": "tsc",
@@ -23,6 +23,7 @@
   "dependencies": {
     "chatgpt": "^4.4.1",
     "dotenv": "^16.0.3",
+    "node-fetch": "^3.3.0",
     "node-telegram-bot-api": "^0.61.0"
   }
 }
