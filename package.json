@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "dev": "nodemon",
-    "build": "esno src/**/*.ts build --format=esm",
-    "start": "npm run build && node dist/main.js"
+    "build": "tsc",
+    "start": "node ./dist/main.js"
   },
   "type": "module",
   "keywords": [],
