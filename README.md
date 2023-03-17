@@ -20,11 +20,9 @@ If you just want to use ChatGPT you can search for ```@TextChatGPTBot``` in tele
 ### Your Own Bot
 If you want to have your own bot easily you can clone this project and add a ```.env``` file with these states on it:
 
-    ```
     TELEGRAM_TOKEN="Your telegram bot token"
     BOT_USERNAME="@your_bot_username"
     CHATGPT_TOKEN="Your ChatGPT token"
-    ```
 
 And after that just run ```npm i``` and ```npm start``` in your command line.
 
