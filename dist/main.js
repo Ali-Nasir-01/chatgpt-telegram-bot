@@ -8,20 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import TelegramBot from "node-telegram-bot-api";
-import { ChatGPTAPI } from "chatgpt";
+import { ChatGPTUnofficialProxyAPI } from "chatgpt";
 import dotenv from "dotenv";
 dotenv.config();
 const token = process.env.TELEGRAM_TOKEN;
-const apiKey = process.env.CHATGPT_TOKEN;
+const accessToken = process.env.ACCESS_TOKEN;
 const botUsername = process.env.BOT_USERNAME;
-if (!token || !apiKey || !botUsername) {
+if (!token || !accessToken || !botUsername) {
     throw "Your .env variables not found!";
 }
 // Initialize Telegram bot
 const bot = new TelegramBot(token, { polling: true });
 // Initialize OpenAI client
-const api = new ChatGPTAPI({
-    apiKey: apiKey,
+const api = new ChatGPTUnofficialProxyAPI({
+    accessToken: accessToken,
 });
 const generateResponse = (msg) => __awaiter(void 0, void 0, void 0, function* () {
     if (!msg)
@@ -32,6 +32,7 @@ const generateResponse = (msg) => __awaiter(void 0, void 0, void 0, function* ()
         return response.text;
     }
     catch (err) {
+        console.log('err', err);
         return "There is no answer";
     }
 });

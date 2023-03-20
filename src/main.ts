@@ -26,6 +26,7 @@ const generateResponse = async (msg: string) => {
     const response = await api.sendMessage(text);
     return response.text;
   } catch (err) {
+    console.log('err', err);
     return "There is no answer";
   }
 };
