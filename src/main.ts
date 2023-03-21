@@ -1,4 +1,5 @@
 import TelegramBot from "node-telegram-bot-api";
+import cron from "node-cron";
 import { ChatGPTUnofficialProxyAPI } from "chatgpt";
 import dotenv from "dotenv";
 dotenv.config();
@@ -13,10 +14,26 @@ if (!token || !accessToken || !botUsername) {
 
 // Initialize Telegram bot
 const bot = new TelegramBot(token, { polling: true });
-
+let messagesArray: MsgDetail[] = [];
 // Initialize OpenAI client
 const api = new ChatGPTUnofficialProxyAPI({
   accessToken: accessToken,
+});
+
+const checkMessages = async () => {
+  if (messagesArray.length > 0 && messagesArray.find(({sended}) => sended === false)) {
+    for (let message of messagesArray) {
+      message.response = await generateResponse(message.message);
+      message.sended = true;
+      sendMessage(message);
+    }
+  } else {
+    messagesArray = [];
+  }
+}
+
+cron.schedule('*/5 * * * * *', () => {
+  checkMessages();
 });
 
 const generateResponse = async (msg: string) => {
@@ -35,19 +52,40 @@ const removeUsername = (msg: string) => {
   return msg.replace(`${botUsername} `, "");
 };
 
+interface MsgDetail {
+  chatId: number,
+  message: string,
+  response: string | null,
+  sended: boolean
+}
+
+const newMessage = (msgDetails: MsgDetail) => {
+  messagesArray.push(msgDetails);
+}
+
+const sendMessage = (msgDetails: MsgDetail) => {
+  bot.sendMessage(msgDetails.chatId, msgDetails.response!);
+}
+
 // Handle incoming Telegram messages
 bot.on("message", async (msg) => {
   if (msg.chat.type === "private") {
-    const chatId = msg.chat.id;
-    const response = await generateResponse(msg.text!);
-    bot.sendMessage(chatId, response);
+    newMessage({
+      chatId: msg.chat.id,
+      message: msg.text!,
+      response: null,
+      sended:false
+    });
   }
 });
 
 const regex = new RegExp(botUsername, "g");
 bot.onText(regex, async (msg) => {
-  const chatId = msg.chat.id;
   const text = removeUsername(msg.text!);
-  const response = await generateResponse(text);
-  bot.sendMessage(chatId, response);
+  newMessage({
+      chatId: msg.chat.id,
+      message: text!,
+      response: null,
+      sended:false
+    });
 });
