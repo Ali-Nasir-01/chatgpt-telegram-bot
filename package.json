@@ -24,6 +24,7 @@
     "chatgpt": "^5.1.1",
     "dotenv": "^16.0.3",
     "fetch": "^1.1.0",
+    "node-cron": "^3.0.2",
     "node-telegram-bot-api": "^0.61.0"
   }
 }
