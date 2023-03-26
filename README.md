@@ -22,9 +22,11 @@ If you want to have your own bot easily you can clone this project and add a ```
 
     TELEGRAM_TOKEN="Your telegram bot token"
     BOT_USERNAME="@your_bot_username"
-    CHATGPT_TOKEN="Your ChatGPT token"
+    ACCESS_TOKEN="Your OpenAI access token"
 
 And after that just run ```npm i``` and ```npm start``` in your command line.
+
+you can manually get an accessToken by logging in to the ChatGPT webapp and then opening ```https://chat.openai.com/api/auth/session```, which will return a JSON object containing your ```accessToken``` string.
 
 ## TODO
 - Use proxy instead of API to make it free for all requests
