@@ -9,6 +9,7 @@ Also, this bot can join telegram groups and if mentioned answer your questions.
 
 ## Features
 - Real-time responding
+- Send messages completely free and without any limitations throughtout the day
 - Add bot to the telegram groups
 - Based on [npm chatgpt package](https://www.npmjs.com/package/chatgpt)
 ## Usage
@@ -29,7 +30,7 @@ And after that just run ```npm i``` and ```npm start``` in your command line.
 you can manually get an accessToken by logging in to the ChatGPT webapp and then opening ```https://chat.openai.com/api/auth/session```, which will return a JSON object containing your ```accessToken``` string.
 
 ## TODO
-- Use proxy instead of API to make it free for all requests
+- Use both ProxyAPI and API with options specified in the configuration file
 - Add bot commands
 
 ## Contribution
