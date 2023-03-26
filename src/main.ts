@@ -23,9 +23,11 @@ const api = new ChatGPTUnofficialProxyAPI({
 const checkMessages = async () => {
   if (messagesArray.length > 0 && messagesArray.find(({sended}) => sended === false)) {
     for (let message of messagesArray) {
-      message.response = await generateResponse(message.message);
-      message.sended = true;
-      sendMessage(message);
+      if (!message.sended) {
+        message.response = await generateResponse(message.message);
+        message.sended = true;
+        sendMessage(message);
+      }
     }
   } else {
     messagesArray = [];
