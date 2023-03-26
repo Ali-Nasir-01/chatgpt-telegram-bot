@@ -12,6 +12,8 @@ if (!token || !accessToken || !botUsername) {
   throw "Your .env variables not found!";
 }
 
+let lock = false;
+
 // Initialize Telegram bot
 const bot = new TelegramBot(token, { polling: true });
 let messagesArray: MsgDetail[] = [];
@@ -21,13 +23,17 @@ const api = new ChatGPTUnofficialProxyAPI({
 });
 
 const checkMessages = async () => {
-  if (messagesArray.length > 0 && messagesArray.find(({sended}) => sended === false)) {
+  if (messagesArray.length > 0 && messagesArray.find(({ sended }) => sended === false)) {
+    if (!lock) {
+      lock = true;
     for (let message of messagesArray) {
       if (!message.sended) {
         message.response = await generateResponse(message.message);
         message.sended = true;
         sendMessage(message);
       }
+      }
+      lock = false;
     }
   } else {
     messagesArray = [];
