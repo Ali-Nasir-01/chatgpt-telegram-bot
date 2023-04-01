@@ -20,6 +20,7 @@ let messagesArray: MsgDetail[] = [];
 // Initialize OpenAI client
 const api = new ChatGPTUnofficialProxyAPI({
   accessToken: accessToken,
+  // apiReverseProxyUrl: "https://api.pawan.krd/backend-api/conversation"
 });
 
 const checkMessages = async () => {
