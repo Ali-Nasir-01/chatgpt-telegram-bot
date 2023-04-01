@@ -20,7 +20,7 @@ let messagesArray: MsgDetail[] = [];
 // Initialize OpenAI client
 const api = new ChatGPTUnofficialProxyAPI({
   accessToken: accessToken,
-  // apiReverseProxyUrl: "https://api.pawan.krd/backend-api/conversation"
+  apiReverseProxyUrl: "https://bypass.churchless.tech/api/conversation"
 });
 
 const checkMessages = async () => {
@@ -53,7 +53,9 @@ const generateResponse = async (msg: string) => {
     return response.text;
   } catch (err) {
     console.log('err', err);
-    return "There is no answer";
+    return `Dear user,\n
+We apologize for the inconvenience you might be experiencing with our bot. We have identified an issue and are currently working on fixing it as soon as possible. Please bear with us while we get this resolved.\n
+Thank you for your patience and understanding.`;
   }
 };
 
